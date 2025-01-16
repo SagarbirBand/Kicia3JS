@@ -77,6 +77,32 @@ class KiciaWorld
         light = new THREE.AmbientLight(0x101010);
         this._scene.add(light);
 
+        //HOUSE LIGHTS FOR CURRENT SCALE OF 50
+        let l1 = new THREE.PointLight(0x101010, 20, 100);
+        l1.position.set(98.56, 207.18, 188.89);
+        let l2 = new THREE.PointLight(0x101010, 5, 100);
+        l2.position.set(61.35, -9.17, 33.52);
+        let l3 = new THREE.PointLight(0x101010, 5, 100);
+        l3.position.set(4.58, -9.70, 46.02); 
+        let l4 = new THREE.PointLight(0x101010, 5, 100);
+        l4.position.set(11.78, -9.53, 19.13);
+        let l5 = new THREE.PointLight(0x101010, 5, 100);
+        l5.position.set(-18.74, -9.06, -85.15);
+        let l6 = new THREE.PointLight(0x101010, 5, 100);
+        l6.position.set(61.32, -13.84, 22.82);
+        let l7 = new THREE.PointLight(0x101010, 5, 100);
+        l7.position.set(38.68, -16.16, -11.45);
+        let l8 = new THREE.PointLight(0x101010, 10, 100);
+        l8.position.set(40.11, -17.02, 0.37);
+        this._scene.add(l1);
+        this._scene.add(l2);
+        this._scene.add(l3);
+        this._scene.add(l4);
+        this._scene.add(l5);
+        this._scene.add(l6);
+        this._scene.add(l7);
+        this._scene.add(l8);
+
 
         //enables camera to move with right click pan & scroll zoom
         const controls = new OrbitControls(
@@ -115,7 +141,7 @@ class KiciaWorld
 
 
         //create a plane for blender objects to stay on
-        const plane = new THREE.Mesh(
+        /*const plane = new THREE.Mesh(
             new THREE.PlaneGeometry(500, 500, 10, 10),
             new THREE.MeshStandardMaterial({
                 color: 0xFFFFFF,
@@ -123,13 +149,13 @@ class KiciaWorld
         plane.castShadow = false;
         plane.receiveShadow = true;
         plane.rotation.x = -Math.PI / 2;
-        this._scene.add(plane);
+        this._scene.add(plane);*/
 
 
     
        
-        this._LoadModel('./resources/farmhouse_free.glb', 20, 0 , 0 , 0); //scale & xyz pos for house
-        this._LoadModel('./resources/cat_lowpoly.glb', 20, 30, 0, -100); //scale & xyz pos for cat
+        this._LoadModel('./resources/dom.glb', 50, 0 , 0 , 0); //scale & xyz pos for house
+        //this._LoadModel('./resources/cat_lowpoly.glb', 20, 30, 0, -100); //scale & xyz pos for cat
 
         this._RAF();
     }
@@ -194,7 +220,7 @@ class KiciaWorld
             const scaleFactor = scale; // Adjust this value as needed
             gltf.scene.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
-            gltf.scene.position.set(x, y, z);
+            gltf.scene.position.set(x, y+5, z);
 
             this._scene.add(gltf.scene);
         });
@@ -218,11 +244,20 @@ class KiciaWorld
         });
     }
 }
-
-
   
 let _APP = null;
 window.addEventListener('DOMContentLoaded', () => {
     _APP = new KiciaWorld();
 });
 
+
+
+
+/*
+TODO:
+1. Change plane color as necessary
+2. Insert appropriate models
+3. Add lighting points as necessary around the house.
+4. Camera panning & model for walking if can be implemented.
+5/ Rename
+*/
